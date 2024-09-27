@@ -10,9 +10,6 @@ class RangeIPValue : public IPValue
     public:
         RangeIPValue() = default;
         RangeIPValue(std::string _value);
-
-    protected:
-        std::string value;
 };
 
 #endif

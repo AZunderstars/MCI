@@ -10,9 +10,6 @@ class SubnetIPValue : public IPValue
     public:
         SubnetIPValue() = default;
         SubnetIPValue(std::string _value);
-
-    protected:
-        std::string value;
 };
 
 #endif

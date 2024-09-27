@@ -47,3 +47,23 @@ void IPManager::create_address(string value)
     }
     IPs.push_back(ip);
 }
+
+void IPManager::print_addresses(vector<string> command_sections)
+{
+    if (command_sections.size() == 1)
+    {
+        print_all_addresses();
+    }
+    else
+    {
+        print_addresses_with_type(command_sections[1]);
+    }
+}
+
+void IPManager::print_all_addresses()
+{
+}
+
+void IPManager::print_addresses_with_type(string type)
+{
+}
