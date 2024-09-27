@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <fstream>
 
 using namespace std;
 
@@ -34,6 +35,10 @@ void IPManager::run()
         else if (command_sections[0] == "getAddress")
         {
             print_address_by_name(command_sections[1]);
+        }
+        else if (command_sections[0] == "exportFile")
+        {
+            export_addresses_to_file(command_sections[1]);
         }
     }
 }
@@ -66,7 +71,10 @@ void IPManager::print_addresses(vector<string> command_sections)
 {
     if (command_sections.size() == 1)
     {
-        print_addresses_in(IPs);
+        for (IP ip : IPs)
+        {
+            print_address(ip);
+        }
     }
     else if (command_sections[1] == "groups")
     {
@@ -81,12 +89,9 @@ void IPManager::print_addresses(vector<string> command_sections)
     }
 }
 
-void IPManager::print_addresses_in(vector<IP> ips)
+void IPManager::print_address(IP ip, ostream &ostr)
 {
-    for (IP ip : ips)
-    {
-        cout << ip.get_name() << " " << ip.get_value() << endl;
-    }
+    ostr << ip.get_name() << " " << ip.get_value() << endl;
 }
 
 void IPManager::print_addresses_with_type(string type)
@@ -99,7 +104,10 @@ void IPManager::print_addresses_with_type(string type)
             selected_IPs.push_back(ip);
         }
     }
-    print_addresses_in(selected_IPs);
+    for (IP ip : selected_IPs)
+    {
+        print_address(ip);
+    }
 }
 
 void IPManager::create_address_group(string name)
@@ -131,5 +139,16 @@ void IPManager::add_to_address_group(string address_group_name, string address_n
 void IPManager::print_address_by_name(string name)
 {
     IP ip = find_address_by_name(name);
-    print_addresses_in({ip});
+    print_address(ip);
+}
+
+void IPManager::export_addresses_to_file(string file_name)
+{
+    ofstream file;
+    file.open(file_name);
+    for (IP ip : IPs)
+    {
+        print_address(ip, file);
+    }
+    file.close();
 }
