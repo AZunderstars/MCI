@@ -10,6 +10,7 @@ class SubnetIPValue : public IPValue
     public:
         SubnetIPValue() = default;
         SubnetIPValue(std::string _value);
+        std::string get_type();
 };
 
 #endif

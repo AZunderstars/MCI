@@ -27,25 +27,25 @@ void IPManager::run()
 
 void IPManager::create_address(string value)
 {
-    IP ip;
+    IP *ip;
     if (is_single_IP_value_valid(value))
     {
-        ip = IP(SingleIPValue(value));
+        ip = new IP(SingleIPValue(value));
     }
     else if (is_subnet_IP_value_valid(value))
     {
-        ip = IP(SubnetIPValue(value));
+        ip = new IP(SubnetIPValue(value));
     }
     else if (is_range_IP_value_valid(value))
     {
-        ip = IP(RangeIPValue(value));
+        ip = new IP(RangeIPValue(value));
     }
     else
     {
         cout << "error " << value << " is not valid" << endl;
         return;
     }
-    IPs.push_back(&ip);
+    IPs.push_back(ip);
     cout << value << " added to list" << endl;
 }
 
@@ -53,7 +53,7 @@ void IPManager::print_addresses(vector<string> command_sections)
 {
     if (command_sections.size() == 1)
     {
-        print_all_addresses();
+        print_addresses_in(IPs);
     }
     else
     {
@@ -61,10 +61,23 @@ void IPManager::print_addresses(vector<string> command_sections)
     }
 }
 
-void IPManager::print_all_addresses()
+void IPManager::print_addresses_in(vector<IP *> ips)
 {
+    for (IP *ip : ips)
+    {
+        cout << ip->get_value() << endl;
+    }
 }
 
 void IPManager::print_addresses_with_type(string type)
 {
+    vector<IP *> selected_IPs;
+    for (IP *ip : IPs)
+    {
+        if (type == ip->get_value_type())
+        {
+            selected_IPs.push_back(ip);
+        }
+    }
+    print_addresses_in(selected_IPs);
 }

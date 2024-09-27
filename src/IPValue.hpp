@@ -6,6 +6,10 @@
 
 class IPValue
 {
+    public:
+        virtual std::string get_type() { return ""; };
+        std::string get_value();
+
     protected:
         std::string value;
 };

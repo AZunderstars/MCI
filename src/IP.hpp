@@ -10,6 +10,8 @@ class IP
     public:
         IP() = default;
         IP(IPValue _IPvalue);
+        std::string get_value_type();
+        std::string get_value();
 
     protected:
         IPValue IPvalue;

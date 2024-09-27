@@ -10,6 +10,7 @@ class SingleIPValue : public IPValue
     public:
         SingleIPValue() = default;
         SingleIPValue(std::string _value);
+        std::string get_type();
 };
 
 #endif
