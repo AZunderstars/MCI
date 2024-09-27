@@ -15,6 +15,7 @@ void Messenger::print_address(IP ip, ostream &ostr)
 void Messenger::output_print_addresses(vector<IP> IPs)
 {
     cout << "Your addresses :" << endl;
+    cout << "Name       Address" << endl;
     for (IP ip : IPs)
     {
         print_address(ip);
@@ -24,6 +25,7 @@ void Messenger::output_print_addresses(vector<IP> IPs)
 void Messenger::output_print_addresses_with_type(vector<IP> IPs, string type)
 {
     cout << "Your " << type << " addresses :" << endl;
+    cout << "Name       Address" << endl;
     for (IP ip : IPs)
     {
         print_address(ip);
@@ -32,6 +34,7 @@ void Messenger::output_print_addresses_with_type(vector<IP> IPs, string type)
 
 void Messenger::output_print_address_groups(vector<AddressGroup *> address_groups)
 {
+    cout << endl;
     for (AddressGroup *ag : address_groups)
     {
         cout << ag->get_name() << " ";
