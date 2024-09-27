@@ -2,6 +2,7 @@
 
 using namespace std;
 
-IP::IP(IPValue IPvalue)
+IP::IP(IPValue _IPvalue)
 {
+    IPvalue = _IPvalue;
 }

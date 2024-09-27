@@ -4,6 +4,7 @@
 
 #include "IP.hpp"
 #include <vector>
+#include <string>
 
 class IPManager
 {
@@ -12,6 +13,9 @@ class IPManager
 
     protected:
         std::vector<IP> IPs;
+
+        void create_address(std::string value);
+        void print_addresses(std::vector<std::string> command_sections);
 };
 
 #endif

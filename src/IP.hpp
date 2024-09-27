@@ -8,10 +8,11 @@
 class IP
 {
     public:
-        IP(IPValue IPvalue);
+        IP() = default;
+        IP(IPValue _IPvalue);
 
     protected:
-        IPValue value;
+        IPValue IPvalue;
 };
 
 #endif
