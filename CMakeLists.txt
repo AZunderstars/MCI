@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.10)
+project(MCI)
+include_directories(src/)
+file(GLOB SOURCES src/*.cpp)
+add_executable(MCI.out ${SOURCES})
