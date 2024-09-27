@@ -27,6 +27,7 @@ class IPManager
         AddressGroup *find_address_group_by_name(std::string name);
         void print_address_by_name(std::string name);
         void export_addresses_to_file(std::string file_name);
+        void import_addresses_from_file(std::string file_name);
 };
 
 #endif

@@ -40,6 +40,10 @@ void IPManager::run()
         {
             export_addresses_to_file(command_sections[1]);
         }
+        else if (command_sections[0] == "importFile")
+        {
+            import_addresses_from_file(command_sections[1]);
+        }
     }
 }
 
@@ -151,4 +155,14 @@ void IPManager::export_addresses_to_file(string file_name)
         print_address(ip, file);
     }
     file.close();
+}
+
+void IPManager::import_addresses_from_file(string file_name)
+{
+    ifstream file(file_name);
+    string name, value;
+    while (file >> name >> value)
+    {
+        create_address(name, value);
+    }
 }
