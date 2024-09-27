@@ -8,7 +8,7 @@
 class IP
 {
     public:
-        IP(std::string value);
+        IP(IPValue IPvalue);
 
     protected:
         IPValue value;

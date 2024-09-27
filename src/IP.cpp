@@ -1,15 +1,7 @@
 #include "IP.hpp"
-#include "SingleIPValue.hpp"
 
 using namespace std;
 
-IP::IP(string value)
+IP::IP(IPValue IPvalue)
 {
-    try
-    {
-        SingleIPValue(value);
-    }
-    catch (exception)
-    {
-    }
 }
