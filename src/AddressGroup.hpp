@@ -10,11 +10,12 @@ class AddressGroup
 {
     public:
         AddressGroup(std::string _name);
-        std::string get_name();
+        std::string get_name() const;
+        void add_address(IP ip);
 
     private:
         std::string name;
-        std::vector<IP>IPs;
+        std::vector<IP> IPs;
 };
 
 #endif

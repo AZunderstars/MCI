@@ -22,8 +22,8 @@ class IPManager
         void print_addresses_with_type(std::string type);
         void create_address_group(std::string name);
         void add_to_address_group(std::string address_group_name, std::string address_name);
-        void find_address_by_name(std::string name);
-        void find_addressgroup_by_name(std::string name);
+        IP find_address_by_name(std::string name);
+        AddressGroup find_address_group_by_name(std::string name);
 };
 
 #endif

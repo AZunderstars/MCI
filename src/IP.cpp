@@ -18,7 +18,7 @@ string IP::get_value()
     return IPvalue->get_value();
 }
 
-string IP::get_name()
+string IP::get_name() const
 {
     return name;
 }
