@@ -27,18 +27,18 @@ void IPManager::run()
 
 void IPManager::create_address(string value)
 {
-    IP *ip;
+    IP ip;
     if (is_single_IP_value_valid(value))
     {
-        ip = new IP(SingleIPValue(value));
+        ip = IP(new SingleIPValue(value));
     }
     else if (is_subnet_IP_value_valid(value))
     {
-        ip = new IP(SubnetIPValue(value));
+        ip = IP(new SubnetIPValue(value));
     }
     else if (is_range_IP_value_valid(value))
     {
-        ip = new IP(RangeIPValue(value));
+        ip = IP(new RangeIPValue(value));
     }
     else
     {
@@ -61,20 +61,20 @@ void IPManager::print_addresses(vector<string> command_sections)
     }
 }
 
-void IPManager::print_addresses_in(vector<IP *> ips)
+void IPManager::print_addresses_in(vector<IP> ips)
 {
-    for (IP *ip : ips)
+    for (IP ip : ips)
     {
-        cout << ip->get_value() << endl;
+        cout << ip.get_value() << endl;
     }
 }
 
 void IPManager::print_addresses_with_type(string type)
 {
-    vector<IP *> selected_IPs;
-    for (IP *ip : IPs)
+    vector<IP> selected_IPs;
+    for (IP ip : IPs)
     {
-        if (type == ip->get_value_type())
+        if (type == ip.get_value_type())
         {
             selected_IPs.push_back(ip);
         }

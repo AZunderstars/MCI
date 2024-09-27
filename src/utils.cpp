@@ -20,8 +20,17 @@ bool is_IP_section_number_valid(int IP_sectioon)
     return IP_sectioon >= 0 and IP_sectioon <= 255;
 }
 
+bool does_string_have_char(string str, char c)
+{
+    return str.find(c) != string::npos;
+}
+
 bool is_single_IP_value_valid(string value)
 {
+    if (does_string_have_char(value, '/') or does_string_have_char(value, '-'))
+    {
+        return false;
+    }
     vector<string> IP_sections = parse_string_by_delimiter(value, '.');
     for (string IP_section : IP_sections)
     {
@@ -40,7 +49,7 @@ bool is_mask_valid(int mask)
 
 bool is_subnet_IP_value_valid(string value)
 {
-    if (value.find('/') == string::npos)
+    if (!does_string_have_char(value, '/'))
     {
         return false;
     }
@@ -67,7 +76,7 @@ bool is_IP_range_valid(string range_start, string range_end)
 
 bool is_range_IP_value_valid(string value)
 {
-    if (value.find('-') == string::npos)
+    if (!does_string_have_char(value, '-'))
     {
         return false;
     }
