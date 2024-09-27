@@ -45,7 +45,7 @@ void IPManager::create_address(string value)
         cout << "error " << value << " is not valid" << endl;
         return;
     }
-    IPs.push_back(ip);
+    IPs.push_back(&ip);
     cout << value << " added to list" << endl;
 }
 
