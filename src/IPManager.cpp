@@ -64,7 +64,7 @@ void IPManager::create_address(string name, string value)
     }
     else
     {
-        cout << "error " << value << " is not valid" << endl;
+        messenger.output_create_address_fail(value);
         return;
     }
     IPs.push_back(ip);

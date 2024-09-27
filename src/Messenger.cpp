@@ -68,3 +68,8 @@ void Messenger::output_import_file_success()
 {
     cout << "import addresses successfully" << endl;
 }
+
+void Messenger::output_create_address_fail(string value)
+{
+    cout << value << " is not valid" << endl;
+}
