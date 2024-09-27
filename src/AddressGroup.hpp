@@ -9,7 +9,9 @@
 class AddressGroup
 {
     public:
+        AddressGroup(std::string _name);
         std::string get_name();
+
     private:
         std::string name;
         std::vector<IP>IPs;

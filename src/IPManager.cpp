@@ -22,6 +22,14 @@ void IPManager::run()
         {
             print_addresses(command_sections);
         }
+        else if (command_sections[0] == "createAddressGroup")
+        {
+            create_address_group(command_sections[1]);
+        }
+        else if (command_sections[0] == "addAddressGroup")
+        {
+            add_to_address_group(command_sections[1], command_sections[2]);
+        }
     }
 }
 
@@ -80,4 +88,14 @@ void IPManager::print_addresses_with_type(string type)
         }
     }
     print_addresses_in(selected_IPs);
+}
+
+void IPManager::create_address_group(string name)
+{
+    address_groups.push_back(AddressGroup(name));
+}
+
+void IPManager::add_to_address_group(string address_group_name, string address_name)
+{
+    
 }
