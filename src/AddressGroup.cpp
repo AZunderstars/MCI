@@ -12,6 +12,11 @@ string AddressGroup::get_name() const
     return name;
 }
 
+vector<IP> AddressGroup::get_addresses()
+{
+    return IPs;
+}
+
 void AddressGroup::add_address(IP ip)
 {
     IPs.push_back(ip);

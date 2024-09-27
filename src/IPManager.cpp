@@ -31,7 +31,8 @@ void IPManager::run()
         {
             add_to_address_group(command_sections[1], command_sections[2]);
         }
-        else if (command_sections[0]=="getAddress"){
+        else if (command_sections[0] == "getAddress")
+        {
             print_address_by_name(command_sections[1]);
         }
     }
@@ -67,6 +68,13 @@ void IPManager::print_addresses(vector<string> command_sections)
     {
         print_addresses_in(IPs);
     }
+    else if (command_sections[1] == "groups")
+    {
+        for (AddressGroup *group : address_groups)
+        {
+            cout << group->get_name() << " " << group->get_addresses().size() << endl;
+        }
+    }
     else
     {
         print_addresses_with_type(command_sections[1]);
@@ -96,31 +104,32 @@ void IPManager::print_addresses_with_type(string type)
 
 void IPManager::create_address_group(string name)
 {
-    address_groups.push_back(AddressGroup(name));
+    address_groups.push_back(new AddressGroup(name));
 }
 
 IP IPManager::find_address_by_name(string name)
 {
     auto iter = find_if(IPs.begin(), IPs.end(), [&name](const IP &ip)
-                    { return ip.get_name() == name; });
+                        { return ip.get_name() == name; });
     return IPs[distance(IPs.begin(), iter)];
 }
 
-AddressGroup IPManager::find_address_group_by_name(string name)
+AddressGroup *IPManager::find_address_group_by_name(string name)
 {
-    auto iter = find_if(address_groups.begin(), address_groups.end(), [&name](const AddressGroup &ag)
-                    { return ag.get_name() == name; });
+    auto iter = find_if(address_groups.begin(), address_groups.end(), [&name](const AddressGroup *ag)
+                        { return ag->get_name() == name; });
     return address_groups[distance(address_groups.begin(), iter)];
 }
 
 void IPManager::add_to_address_group(string address_group_name, string address_name)
 {
-    AddressGroup address_group=find_address_group_by_name(address_group_name);
+    AddressGroup *address_group = find_address_group_by_name(address_group_name);
     IP ip = find_address_by_name(address_name);
-    address_group.add_address(ip);
+    address_group->add_address(ip);
 }
 
-void IPManager::print_address_by_name(string name){
+void IPManager::print_address_by_name(string name)
+{
     IP ip = find_address_by_name(name);
     print_addresses_in({ip});
 }

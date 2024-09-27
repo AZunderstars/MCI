@@ -14,7 +14,7 @@ class IPManager
 
     private:
         std::vector<IP> IPs;
-        std::vector<AddressGroup> address_groups;
+        std::vector<AddressGroup *> address_groups;
 
         void create_address(std::string name, std::string value);
         void print_addresses(std::vector<std::string> command_sections);
@@ -23,7 +23,7 @@ class IPManager
         void create_address_group(std::string name);
         void add_to_address_group(std::string address_group_name, std::string address_name);
         IP find_address_by_name(std::string name);
-        AddressGroup find_address_group_by_name(std::string name);
+        AddressGroup *find_address_group_by_name(std::string name);
         void print_address_by_name(std::string name);
 };
 

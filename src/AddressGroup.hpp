@@ -11,6 +11,7 @@ class AddressGroup
     public:
         AddressGroup(std::string _name);
         std::string get_name() const;
+        std::vector<IP> get_addresses();
         void add_address(IP ip);
 
     private:
