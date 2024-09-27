@@ -11,7 +11,7 @@ using namespace std;
 void IPManager::run()
 {
     string command;
-    while (cin >> command)
+    while (getline(cin, command))
     {
         vector<string> command_sections = parse_string_by_delimiter(command, ' ');
         if (command_sections[0] == "address")
@@ -42,10 +42,11 @@ void IPManager::create_address(string value)
     }
     else
     {
-        // not valid
+        cout << "error " << value << " is not valid" << endl;
         return;
     }
     IPs.push_back(ip);
+    cout << value << " added to list" << endl;
 }
 
 void IPManager::print_addresses(vector<string> command_sections)

@@ -40,6 +40,10 @@ bool is_mask_valid(int mask)
 
 bool is_subnet_IP_value_valid(string value)
 {
+    if (value.find('/') == string::npos)
+    {
+        return false;
+    }
     string subnet, mask;
     vector<string> parsed_value_by_slash = parse_string_by_delimiter(value, '/');
     subnet = parsed_value_by_slash[0];
@@ -63,6 +67,10 @@ bool is_IP_range_valid(string range_start, string range_end)
 
 bool is_range_IP_value_valid(string value)
 {
+    if (value.find('-') == string::npos)
+    {
+        return false;
+    }
     string range_start, range_end;
     vector<string> parsed_value_by_dash = parse_string_by_delimiter(value, '-');
     range_start = parsed_value_by_dash[0];
