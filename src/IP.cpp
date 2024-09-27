@@ -22,3 +22,8 @@ string IP::get_name() const
 {
     return name;
 }
+
+bool IP::operator==(const IP &other)
+{
+    return name == other.name;
+}

@@ -24,5 +24,6 @@ class Messenger
         void output_create_address_fail(std::string value);
         void output_address_group_not_found(std::string name);
         void output_ip_not_found(std::string name);
+        void output_address_already_in_address_group(AddressGroup *address_group, IP ip);
 };
 #endif

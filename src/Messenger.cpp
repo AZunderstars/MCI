@@ -86,3 +86,8 @@ void Messenger::output_ip_not_found(std::string name)
 {
     cout << "error " << name << " is not available" << endl;
 }
+
+void Messenger::output_address_already_in_address_group(AddressGroup *address_group, IP ip)
+{
+    cout << "error " << ip.get_name() << " is already in " << address_group->get_name() << endl;
+}

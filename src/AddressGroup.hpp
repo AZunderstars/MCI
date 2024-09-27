@@ -13,6 +13,7 @@ class AddressGroup
         std::string get_name() const;
         std::vector<IP> get_addresses();
         void add_address(IP ip);
+        bool has_address(IP ip);
 
     private:
         std::string name;

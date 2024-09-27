@@ -135,6 +135,11 @@ void IPManager::add_to_address_group(string address_group_name, string address_n
         return;
     }
     IP ip = *iter_ip;
+    if (address_group->has_address(ip))
+    {
+        messenger.output_address_already_in_address_group(address_group, ip);
+        return;
+    }
     address_group->add_address(ip);
     messenger.output_add_to_address_group_success(address_group, ip);
 }

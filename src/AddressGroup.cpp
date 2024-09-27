@@ -1,4 +1,5 @@
 #include "AddressGroup.hpp"
+#include <algorithm>
 
 using namespace std;
 
@@ -20,4 +21,9 @@ vector<IP> AddressGroup::get_addresses()
 void AddressGroup::add_address(IP ip)
 {
     IPs.push_back(ip);
+}
+
+bool AddressGroup::has_address(IP ip)
+{
+    return find(IPs.begin(), IPs.end(), ip) != IPs.end();
 }

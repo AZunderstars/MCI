@@ -13,6 +13,7 @@ class IP
         std::string get_value_type();
         std::string get_value();
         std::string get_name() const;
+        bool operator==(const IP& other);
 
     protected:
         IPValue *IPvalue;
