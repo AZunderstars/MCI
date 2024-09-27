@@ -31,6 +31,9 @@ void IPManager::run()
         {
             add_to_address_group(command_sections[1], command_sections[2]);
         }
+        else if (command_sections[0]=="getAddress"){
+            print_address_by_name(command_sections[1]);
+        }
     }
 }
 
@@ -115,4 +118,9 @@ void IPManager::add_to_address_group(string address_group_name, string address_n
     AddressGroup address_group=find_address_group_by_name(address_group_name);
     IP ip = find_address_by_name(address_name);
     address_group.add_address(ip);
+}
+
+void IPManager::print_address_by_name(string name){
+    IP ip = find_address_by_name(name);
+    print_addresses_in({ip});
 }
