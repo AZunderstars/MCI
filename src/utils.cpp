@@ -1,5 +1,6 @@
 #include "utils.hpp"
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -76,7 +77,7 @@ bool is_IP_range_valid(string range_start, string range_end)
 
 bool is_range_IP_value_valid(string value)
 {
-    if (!does_string_have_char(value, '-'))
+    if (!does_string_have_char(value, '-') or count(value.begin(), value.end(), '.') < 6)
     {
         return false;
     }
