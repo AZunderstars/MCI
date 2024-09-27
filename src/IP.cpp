@@ -2,8 +2,9 @@
 
 using namespace std;
 
-IP::IP(IPValue *_IPvalue)
+IP::IP(string _name, IPValue *_IPvalue)
 {
+    name = _name;
     IPvalue = _IPvalue;
 }
 
@@ -15,4 +16,9 @@ string IP::get_value_type()
 string IP::get_value()
 {
     return IPvalue->get_value();
+}
+
+string IP::get_name()
+{
+    return name;
 }

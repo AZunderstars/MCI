@@ -9,12 +9,14 @@ class IP
 {
     public:
         IP() = default;
-        IP(IPValue *_IPvalue);
+        IP(std::string _name, IPValue *_IPvalue);
         std::string get_value_type();
         std::string get_value();
+        std::string get_name();
 
     protected:
         IPValue *IPvalue;
+        std::string name;
 };
 
 #endif

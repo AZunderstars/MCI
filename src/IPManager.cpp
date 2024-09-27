@@ -16,7 +16,7 @@ void IPManager::run()
         vector<string> command_sections = parse_string_by_delimiter(command, ' ');
         if (command_sections[0] == "address")
         {
-            create_address(command_sections[1]);
+            create_address(command_sections[1], command_sections[2]);
         }
         else if (command_sections[0] == "print")
         {
@@ -25,20 +25,20 @@ void IPManager::run()
     }
 }
 
-void IPManager::create_address(string value)
+void IPManager::create_address(string name, string value)
 {
     IP ip;
     if (is_single_IP_value_valid(value))
     {
-        ip = IP(new SingleIPValue(value));
+        ip = IP(name, new SingleIPValue(value));
     }
     else if (is_subnet_IP_value_valid(value))
     {
-        ip = IP(new SubnetIPValue(value));
+        ip = IP(name, new SubnetIPValue(value));
     }
     else if (is_range_IP_value_valid(value))
     {
-        ip = IP(new RangeIPValue(value));
+        ip = IP(name, new RangeIPValue(value));
     }
     else
     {
@@ -65,7 +65,7 @@ void IPManager::print_addresses_in(vector<IP> ips)
 {
     for (IP ip : ips)
     {
-        cout << ip.get_value() << endl;
+        cout << ip.get_name() << " " << ip.get_value() << endl;
     }
 }
 
