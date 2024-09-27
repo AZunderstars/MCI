@@ -4,9 +4,9 @@
 
 #include "IP.hpp"
 #include "AddressGroup.hpp"
+#include "Messenger.hpp"
 #include <vector>
 #include <string>
-#include <iostream>
 
 class IPManager
 {
@@ -16,10 +16,10 @@ class IPManager
     private:
         std::vector<IP> IPs;
         std::vector<AddressGroup *> address_groups;
+        Messenger messenger;
 
         void create_address(std::string name, std::string value);
         void print_addresses(std::vector<std::string> command_sections);
-        void print_address(IP ip, std::ostream &ostr = std::cout);
         void print_addresses_with_type(std::string type);
         void create_address_group(std::string name);
         void add_to_address_group(std::string address_group_name, std::string address_name);

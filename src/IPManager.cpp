@@ -68,34 +68,23 @@ void IPManager::create_address(string name, string value)
         return;
     }
     IPs.push_back(ip);
-    cout << value << " added to list" << endl;
+    messenger.output_create_address_success(ip);
 }
 
 void IPManager::print_addresses(vector<string> command_sections)
 {
     if (command_sections.size() == 1)
     {
-        for (IP ip : IPs)
-        {
-            print_address(ip);
-        }
+        messenger.output_print_addresses(IPs);
     }
     else if (command_sections[1] == "groups")
     {
-        for (AddressGroup *group : address_groups)
-        {
-            cout << group->get_name() << " " << group->get_addresses().size() << endl;
-        }
+        messenger.output_print_address_groups(address_groups);
     }
     else
     {
         print_addresses_with_type(command_sections[1]);
     }
-}
-
-void IPManager::print_address(IP ip, ostream &ostr)
-{
-    ostr << ip.get_name() << " " << ip.get_value() << endl;
 }
 
 void IPManager::print_addresses_with_type(string type)
@@ -108,15 +97,14 @@ void IPManager::print_addresses_with_type(string type)
             selected_IPs.push_back(ip);
         }
     }
-    for (IP ip : selected_IPs)
-    {
-        print_address(ip);
-    }
+    messenger.output_print_addresses_with_type(selected_IPs, type);
 }
 
 void IPManager::create_address_group(string name)
 {
-    address_groups.push_back(new AddressGroup(name));
+    AddressGroup *address_group = new AddressGroup(name);
+    address_groups.push_back(address_group);
+    messenger.output_create_address_group_success(address_group);
 }
 
 IP IPManager::find_address_by_name(string name)
@@ -138,12 +126,13 @@ void IPManager::add_to_address_group(string address_group_name, string address_n
     AddressGroup *address_group = find_address_group_by_name(address_group_name);
     IP ip = find_address_by_name(address_name);
     address_group->add_address(ip);
+    messenger.output_add_to_address_group_success(address_group, ip);
 }
 
 void IPManager::print_address_by_name(string name)
 {
     IP ip = find_address_by_name(name);
-    print_address(ip);
+    messenger.output_get_address_by_name(ip);
 }
 
 void IPManager::export_addresses_to_file(string file_name)
@@ -152,9 +141,10 @@ void IPManager::export_addresses_to_file(string file_name)
     file.open(file_name);
     for (IP ip : IPs)
     {
-        print_address(ip, file);
+        messenger.print_address(ip, file);
     }
     file.close();
+    messenger.output_export_file_success();
 }
 
 void IPManager::import_addresses_from_file(string file_name)
@@ -165,4 +155,6 @@ void IPManager::import_addresses_from_file(string file_name)
     {
         create_address(name, value);
     }
+    file.close();
+    messenger.output_import_file_success();
 }
