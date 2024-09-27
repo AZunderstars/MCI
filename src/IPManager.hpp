@@ -12,7 +12,7 @@ class IPManager
         void run();
 
     protected:
-        std::vector<IP> IPs;
+        std::vector<IP *> IPs;
 
         void create_address(std::string value);
         void print_addresses(std::vector<std::string> command_sections);
