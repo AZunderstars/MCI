@@ -107,31 +107,41 @@ void IPManager::create_address_group(string name)
     messenger.output_create_address_group_success(address_group);
 }
 
-IP IPManager::find_address_by_name(string name)
+vector<IP>::iterator IPManager::find_address_by_name(string name)
 {
-    auto iter = find_if(IPs.begin(), IPs.end(), [&name](const IP &ip)
-                        { return ip.get_name() == name; });
-    return IPs[distance(IPs.begin(), iter)];
+    return find_if(IPs.begin(), IPs.end(), [&name](const IP &ip)
+                   { return ip.get_name() == name; });
 }
 
-AddressGroup *IPManager::find_address_group_by_name(string name)
+vector<AddressGroup *>::iterator IPManager::find_address_group_by_name(string name)
 {
-    auto iter = find_if(address_groups.begin(), address_groups.end(), [&name](const AddressGroup *ag)
-                        { return ag->get_name() == name; });
-    return address_groups[distance(address_groups.begin(), iter)];
+    return find_if(address_groups.begin(), address_groups.end(), [&name](const AddressGroup *ag)
+                   { return ag->get_name() == name; });
 }
 
 void IPManager::add_to_address_group(string address_group_name, string address_name)
 {
-    AddressGroup *address_group = find_address_group_by_name(address_group_name);
-    IP ip = find_address_by_name(address_name);
+    auto iter_adress_group = find_address_group_by_name(address_group_name);
+    if (iter_adress_group == address_groups.end())
+    {
+        messenger.output_address_group_not_found(address_group_name);
+        return;
+    }
+    AddressGroup *address_group = *iter_adress_group;
+    auto iter_ip = find_address_by_name(address_name);
+    if (iter_ip == IPs.end())
+    {
+        messenger.output_ip_not_found(address_name);
+        return;
+    }
+    IP ip = *iter_ip;
     address_group->add_address(ip);
     messenger.output_add_to_address_group_success(address_group, ip);
 }
 
 void IPManager::print_address_by_name(string name)
 {
-    IP ip = find_address_by_name(name);
+    IP ip = *find_address_by_name(name);
     messenger.output_get_address_by_name(ip);
 }
 

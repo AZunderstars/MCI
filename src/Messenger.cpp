@@ -74,5 +74,15 @@ void Messenger::output_import_file_success()
 
 void Messenger::output_create_address_fail(string value)
 {
-    cout << value << " is not valid" << endl;
+    cout << "error " << value << " is not valid" << endl;
+}
+
+void Messenger::output_address_group_not_found(string name)
+{
+    cout << "error " << name << " is not available" << endl;
+}
+
+void Messenger::output_ip_not_found(std::string name)
+{
+    cout << "error " << name << " is not available" << endl;
 }

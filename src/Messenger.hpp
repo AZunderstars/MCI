@@ -22,5 +22,7 @@ class Messenger
         void output_import_file_success();
         void print_address(IP ip, std::ostream &ostr = std::cout);
         void output_create_address_fail(std::string value);
+        void output_address_group_not_found(std::string name);
+        void output_ip_not_found(std::string name);
 };
 #endif
