@@ -7,11 +7,12 @@
 
 class RangeIPValue : public IPValue
 {
-public:
-    RangeIPValue(std::string _value);
+    public:
+        RangeIPValue() = default;
+        RangeIPValue(std::string _value);
 
-protected:
-    std::string value;
+    protected:
+        std::string value;
 };
 
 #endif

@@ -8,6 +8,7 @@
 class SingleIPValue : public IPValue
 {
     public:
+        SingleIPValue() = default;
         SingleIPValue(std::string _value);
 
     protected:
