@@ -1,8 +1,8 @@
 #include "AddressManager.hpp"
 #include "utils.hpp"
-#include "SingleIPValue.hpp"
-#include "SubnetIPValue.hpp"
-#include "RangeIPValue.hpp"
+#include "SingleIP.hpp"
+#include "SubnetIP.hpp"
+#include "RangeIP.hpp"
 #include <string>
 #include <iostream>
 #include <algorithm>
@@ -52,15 +52,15 @@ void AddressManager::create_address(string name, string ip_value)
     Address address;
     if (is_single_ip_value_valid(ip_value))
     {
-        address = Address(name, new SingleIPValue(ip_value));
+        address = Address(name, new SingleIP(ip_value));
     }
     else if (is_subnet_ip_value_valid(ip_value))
     {
-        address = Address(name, new SubnetIPValue(ip_value));
+        address = Address(name, new SubnetIP(ip_value));
     }
     else if (is_range_ip_value_valid(ip_value))
     {
-        address = Address(name, new RangeIPValue(ip_value));
+        address = Address(name, new RangeIP(ip_value));
     }
     else
     {
