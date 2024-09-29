@@ -1,7 +1,7 @@
-#include "IPManager.hpp"
+#include "AddressManager.hpp"
 
 int main(int argc, char *argv[])
 {
-    IPManager IPmanager;
+    AddressManager IPmanager;
     IPmanager.run();
 }

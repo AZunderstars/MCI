@@ -1,6 +1,6 @@
 #pragma once
-#ifndef IPMANAGER_HPP
-#define IPMANAGER_HPP
+#ifndef ADDRESSMANAGER_HPP
+#define ADDRESSMANAGER_HPP
 
 #include "Address.hpp"
 #include "AddressGroup.hpp"
@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 
-class IPManager
+class AddressManager
 {
     public:
         void run();

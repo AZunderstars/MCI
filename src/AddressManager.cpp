@@ -1,4 +1,4 @@
-#include "IPManager.hpp"
+#include "AddressManager.hpp"
 #include "utils.hpp"
 #include "SingleIPValue.hpp"
 #include "SubnetIPValue.hpp"
@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void IPManager::run()
+void AddressManager::run()
 {
     string command;
     while (getline(cin, command))
@@ -47,7 +47,7 @@ void IPManager::run()
     }
 }
 
-void IPManager::create_address(string name, string value)
+void AddressManager::create_address(string name, string value)
 {
     Address address;
     if (is_single_IP_value_valid(value))
@@ -71,7 +71,7 @@ void IPManager::create_address(string name, string value)
     messenger.output_create_address_success(address);
 }
 
-void IPManager::print_addresses(vector<string> command_sections)
+void AddressManager::print_addresses(vector<string> command_sections)
 {
     if (command_sections.size() == 1)
     {
@@ -87,7 +87,7 @@ void IPManager::print_addresses(vector<string> command_sections)
     }
 }
 
-void IPManager::print_addresses_with_type(string type)
+void AddressManager::print_addresses_with_type(string type)
 {
     vector<Address> selected_addresses;
     for (Address address : addresses)
@@ -100,26 +100,26 @@ void IPManager::print_addresses_with_type(string type)
     messenger.output_print_addresses_with_type(selected_addresses, type);
 }
 
-void IPManager::create_address_group(string name)
+void AddressManager::create_address_group(string name)
 {
     AddressGroup *address_group = new AddressGroup(name);
     address_groups.push_back(address_group);
     messenger.output_create_address_group_success(address_group);
 }
 
-vector<Address>::iterator IPManager::find_address_by_name(string name)
+vector<Address>::iterator AddressManager::find_address_by_name(string name)
 {
     return find_if(addresses.begin(), addresses.end(), [&name](const Address &address)
                    { return address.get_name() == name; });
 }
 
-vector<AddressGroup *>::iterator IPManager::find_address_group_by_name(string name)
+vector<AddressGroup *>::iterator AddressManager::find_address_group_by_name(string name)
 {
     return find_if(address_groups.begin(), address_groups.end(), [&name](const AddressGroup *ag)
                    { return ag->get_name() == name; });
 }
 
-void IPManager::add_to_address_group(string address_group_name, string address_name)
+void AddressManager::add_to_address_group(string address_group_name, string address_name)
 {
     auto iter_adress_group = find_address_group_by_name(address_group_name);
     if (iter_adress_group == address_groups.end())
@@ -144,13 +144,13 @@ void IPManager::add_to_address_group(string address_group_name, string address_n
     messenger.output_add_to_address_group_success(address_group, address);
 }
 
-void IPManager::print_address_by_name(string name)
+void AddressManager::print_address_by_name(string name)
 {
     Address address = *find_address_by_name(name);
     messenger.output_get_address_by_name(address);
 }
 
-void IPManager::export_addresses_to_file(string file_name)
+void AddressManager::export_addresses_to_file(string file_name)
 {
     ofstream file;
     file.open(file_name);
@@ -162,7 +162,7 @@ void IPManager::export_addresses_to_file(string file_name)
     messenger.output_export_file_success();
 }
 
-void IPManager::import_addresses_from_file(string file_name)
+void AddressManager::import_addresses_from_file(string file_name)
 {
     ifstream file(file_name);
     string name, value;
