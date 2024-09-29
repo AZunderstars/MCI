@@ -2,33 +2,33 @@
 
 using namespace std;
 
-void Messenger::output_create_address_success(IP ip)
+void Messenger::output_create_address_success(Address address)
 {
-    cout << ip.get_name() << " " << ip.get_value() << " added to list" << endl;
+    cout << address.get_name() << " " << address.get_value() << " added to list" << endl;
 }
 
-void Messenger::print_address(IP ip, ostream &ostr)
+void Messenger::print_address(Address address, ostream &ostr)
 {
-    ostr << ip.get_name() << " " << ip.get_value() << endl;
+    ostr << address.get_name() << " " << address.get_value() << endl;
 }
 
-void Messenger::output_print_addresses(vector<IP> IPs)
+void Messenger::output_print_addresses(vector<Address> addresses)
 {
     cout << "Your addresses :" << endl;
     cout << "Name       Address" << endl;
-    for (IP ip : IPs)
+    for (Address address : addresses)
     {
-        print_address(ip);
+        print_address(address);
     }
 }
 
-void Messenger::output_print_addresses_with_type(vector<IP> IPs, string type)
+void Messenger::output_print_addresses_with_type(vector<Address> addresses, string type)
 {
     cout << "Your " << type << " addresses :" << endl;
     cout << "Name       Address" << endl;
-    for (IP ip : IPs)
+    for (Address address : addresses)
     {
-        print_address(ip);
+        print_address(address);
     }
 }
 
@@ -38,7 +38,7 @@ void Messenger::output_print_address_groups(vector<AddressGroup *> address_group
     for (AddressGroup *ag : address_groups)
     {
         cout << ag->get_name() << " ";
-        vector<IP> ag_addresses = ag->get_addresses();
+        vector<Address> ag_addresses = ag->get_addresses();
         for (int i = 0; i < ag_addresses.size() - 1; i++)
         {
             cout << ag_addresses[i].get_name() << ", ";
@@ -52,14 +52,14 @@ void Messenger::output_create_address_group_success(AddressGroup *address_group)
     cout << "addressGroup " << address_group->get_name() << " created" << endl;
 }
 
-void Messenger::output_add_to_address_group_success(AddressGroup *address_group, IP ip)
+void Messenger::output_add_to_address_group_success(AddressGroup *address_group, Address address)
 {
-    cout << ip.get_name() << " add to " << address_group->get_name() << endl;
+    cout << address.get_name() << " add to " << address_group->get_name() << endl;
 }
 
-void Messenger::output_get_address_by_name(IP ip)
+void Messenger::output_get_address_by_name(Address address)
 {
-    print_address(ip);
+    print_address(address);
 }
 
 void Messenger::output_export_file_success()
@@ -82,12 +82,12 @@ void Messenger::output_address_group_not_found(string name)
     cout << "error " << name << " is not available" << endl;
 }
 
-void Messenger::output_ip_not_found(std::string name)
+void Messenger::output_address_not_found(std::string name)
 {
     cout << "error " << name << " is not available" << endl;
 }
 
-void Messenger::output_address_already_in_address_group(AddressGroup *address_group, IP ip)
+void Messenger::output_address_already_in_address_group(AddressGroup *address_group, Address address)
 {
-    cout << "error " << ip.get_name() << " is already in " << address_group->get_name() << endl;
+    cout << "error " << address.get_name() << " is already in " << address_group->get_name() << endl;
 }

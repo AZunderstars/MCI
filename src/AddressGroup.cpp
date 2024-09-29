@@ -13,17 +13,17 @@ string AddressGroup::get_name() const
     return name;
 }
 
-vector<IP> AddressGroup::get_addresses()
+vector<Address> AddressGroup::get_addresses()
 {
-    return IPs;
+    return addresses;
 }
 
-void AddressGroup::add_address(IP ip)
+void AddressGroup::add_address(Address address)
 {
-    IPs.push_back(ip);
+    addresses.push_back(address);
 }
 
-bool AddressGroup::has_address(IP ip)
+bool AddressGroup::has_address(Address address)
 {
-    return find(IPs.begin(), IPs.end(), ip) != IPs.end();
+    return find(addresses.begin(), addresses.end(), address) != addresses.end();
 }

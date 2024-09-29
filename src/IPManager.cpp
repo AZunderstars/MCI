@@ -49,33 +49,33 @@ void IPManager::run()
 
 void IPManager::create_address(string name, string value)
 {
-    IP ip;
+    Address address;
     if (is_single_IP_value_valid(value))
     {
-        ip = IP(name, new SingleIPValue(value));
+        address = Address(name, new SingleIPValue(value));
     }
     else if (is_subnet_IP_value_valid(value))
     {
-        ip = IP(name, new SubnetIPValue(value));
+        address = Address(name, new SubnetIPValue(value));
     }
     else if (is_range_IP_value_valid(value))
     {
-        ip = IP(name, new RangeIPValue(value));
+        address = Address(name, new RangeIPValue(value));
     }
     else
     {
         messenger.output_create_address_fail(value);
         return;
     }
-    IPs.push_back(ip);
-    messenger.output_create_address_success(ip);
+    addresses.push_back(address);
+    messenger.output_create_address_success(address);
 }
 
 void IPManager::print_addresses(vector<string> command_sections)
 {
     if (command_sections.size() == 1)
     {
-        messenger.output_print_addresses(IPs);
+        messenger.output_print_addresses(addresses);
     }
     else if (command_sections[1] == "groups")
     {
@@ -89,15 +89,15 @@ void IPManager::print_addresses(vector<string> command_sections)
 
 void IPManager::print_addresses_with_type(string type)
 {
-    vector<IP> selected_IPs;
-    for (IP ip : IPs)
+    vector<Address> selected_addresses;
+    for (Address address : addresses)
     {
-        if (type == ip.get_value_type())
+        if (type == address.get_value_type())
         {
-            selected_IPs.push_back(ip);
+            selected_addresses.push_back(address);
         }
     }
-    messenger.output_print_addresses_with_type(selected_IPs, type);
+    messenger.output_print_addresses_with_type(selected_addresses, type);
 }
 
 void IPManager::create_address_group(string name)
@@ -107,10 +107,10 @@ void IPManager::create_address_group(string name)
     messenger.output_create_address_group_success(address_group);
 }
 
-vector<IP>::iterator IPManager::find_address_by_name(string name)
+vector<Address>::iterator IPManager::find_address_by_name(string name)
 {
-    return find_if(IPs.begin(), IPs.end(), [&name](const IP &ip)
-                   { return ip.get_name() == name; });
+    return find_if(addresses.begin(), addresses.end(), [&name](const Address &address)
+                   { return address.get_name() == name; });
 }
 
 vector<AddressGroup *>::iterator IPManager::find_address_group_by_name(string name)
@@ -128,35 +128,35 @@ void IPManager::add_to_address_group(string address_group_name, string address_n
         return;
     }
     AddressGroup *address_group = *iter_adress_group;
-    auto iter_ip = find_address_by_name(address_name);
-    if (iter_ip == IPs.end())
+    auto iter_address = find_address_by_name(address_name);
+    if (iter_address == addresses.end())
     {
-        messenger.output_ip_not_found(address_name);
+        messenger.output_address_not_found(address_name);
         return;
     }
-    IP ip = *iter_ip;
-    if (address_group->has_address(ip))
+    Address address = *iter_address;
+    if (address_group->has_address(address))
     {
-        messenger.output_address_already_in_address_group(address_group, ip);
+        messenger.output_address_already_in_address_group(address_group, address);
         return;
     }
-    address_group->add_address(ip);
-    messenger.output_add_to_address_group_success(address_group, ip);
+    address_group->add_address(address);
+    messenger.output_add_to_address_group_success(address_group, address);
 }
 
 void IPManager::print_address_by_name(string name)
 {
-    IP ip = *find_address_by_name(name);
-    messenger.output_get_address_by_name(ip);
+    Address address = *find_address_by_name(name);
+    messenger.output_get_address_by_name(address);
 }
 
 void IPManager::export_addresses_to_file(string file_name)
 {
     ofstream file;
     file.open(file_name);
-    for (IP ip : IPs)
+    for (Address address : addresses)
     {
-        messenger.print_address(ip, file);
+        messenger.print_address(address, file);
     }
     file.close();
     messenger.output_export_file_success();
