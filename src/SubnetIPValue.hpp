@@ -2,10 +2,10 @@
 #ifndef SUBNETIPVALUE_HPP
 #define SUBNETIPVALUE_HPP
 
-#include "IPValue.hpp"
+#include "IP.hpp"
 #include <string>
 
-class SubnetIPValue : public IPValue
+class SubnetIPValue : public IP
 {
     public:
         SubnetIPValue() = default;

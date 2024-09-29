@@ -2,10 +2,10 @@
 #ifndef RANGEIPVALUE_HPP
 #define RANGEIPVALUE_HPP
 
-#include "IPValue.hpp"
+#include "IP.hpp"
 #include <string>
 
-class RangeIPValue : public IPValue
+class RangeIPValue : public IP
 {
     public:
         RangeIPValue() = default;

@@ -1,10 +1,10 @@
 #pragma once
-#ifndef IPVALUE_HPP
-#define IPVALUE_HPP
+#ifndef IP_HPP
+#define IP_HPP
 
 #include <string>
 
-class IPValue
+class IP
 {
     public:
         virtual std::string get_type() { return ""; };

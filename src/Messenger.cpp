@@ -4,12 +4,12 @@ using namespace std;
 
 void Messenger::output_create_address_success(Address address)
 {
-    cout << address.get_name() << " " << address.get_value() << " added to list" << endl;
+    cout << address.get_name() << " " << address.get_ip_value() << " added to list" << endl;
 }
 
 void Messenger::print_address(Address address, ostream &ostr)
 {
-    ostr << address.get_name() << " " << address.get_value() << endl;
+    ostr << address.get_name() << " " << address.get_ip_value() << endl;
 }
 
 void Messenger::output_print_addresses(vector<Address> addresses)
@@ -72,9 +72,9 @@ void Messenger::output_import_file_success()
     cout << "import addresses successfully" << endl;
 }
 
-void Messenger::output_create_address_fail(string value)
+void Messenger::output_create_address_fail(string ip_value)
 {
-    cout << "error " << value << " is not valid" << endl;
+    cout << "error " << ip_value << " is not valid" << endl;
 }
 
 void Messenger::output_address_group_not_found(string name)

@@ -26,7 +26,7 @@ bool does_string_have_char(string str, char c)
     return str.find(c) != string::npos;
 }
 
-bool is_single_IP_value_valid(string value)
+bool is_single_ip_value_valid(string value)
 {
     if (does_string_have_char(value, '/') or does_string_have_char(value, '-'))
     {
@@ -48,7 +48,7 @@ bool is_mask_valid(int mask)
     return mask >= 0 and mask <= 32;
 }
 
-bool is_subnet_IP_value_valid(string value)
+bool is_subnet_ip_value_valid(string value)
 {
     if (!does_string_have_char(value, '/'))
     {
@@ -58,7 +58,7 @@ bool is_subnet_IP_value_valid(string value)
     vector<string> parsed_value_by_slash = parse_string_by_delimiter(value, '/');
     subnet = parsed_value_by_slash[0];
     mask = parsed_value_by_slash[1];
-    return is_single_IP_value_valid(subnet) and is_mask_valid(stoi(mask));
+    return is_single_ip_value_valid(subnet) and is_mask_valid(stoi(mask));
 }
 
 bool is_IP_range_valid(string range_start, string range_end)
@@ -75,7 +75,7 @@ bool is_IP_range_valid(string range_start, string range_end)
     return true;
 }
 
-bool is_range_IP_value_valid(string value)
+bool is_range_ip_value_valid(string value)
 {
     if (!does_string_have_char(value, '-') or count(value.begin(), value.end(), '.') < 6)
     {
@@ -85,5 +85,5 @@ bool is_range_IP_value_valid(string value)
     vector<string> parsed_value_by_dash = parse_string_by_delimiter(value, '-');
     range_start = parsed_value_by_dash[0];
     range_end = parsed_value_by_dash[1];
-    return is_single_IP_value_valid(range_start) and is_single_IP_value_valid(range_end) and is_IP_range_valid(range_start, range_end);
+    return is_single_ip_value_valid(range_start) and is_single_ip_value_valid(range_end) and is_IP_range_valid(range_start, range_end);
 }

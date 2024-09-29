@@ -47,24 +47,24 @@ void AddressManager::run()
     }
 }
 
-void AddressManager::create_address(string name, string value)
+void AddressManager::create_address(string name, string ip_value)
 {
     Address address;
-    if (is_single_IP_value_valid(value))
+    if (is_single_ip_value_valid(ip_value))
     {
-        address = Address(name, new SingleIPValue(value));
+        address = Address(name, new SingleIPValue(ip_value));
     }
-    else if (is_subnet_IP_value_valid(value))
+    else if (is_subnet_ip_value_valid(ip_value))
     {
-        address = Address(name, new SubnetIPValue(value));
+        address = Address(name, new SubnetIPValue(ip_value));
     }
-    else if (is_range_IP_value_valid(value))
+    else if (is_range_ip_value_valid(ip_value))
     {
-        address = Address(name, new RangeIPValue(value));
+        address = Address(name, new RangeIPValue(ip_value));
     }
     else
     {
-        messenger.output_create_address_fail(value);
+        messenger.output_create_address_fail(ip_value);
         return;
     }
     addresses.push_back(address);
@@ -92,7 +92,7 @@ void AddressManager::print_addresses_with_type(string type)
     vector<Address> selected_addresses;
     for (Address address : addresses)
     {
-        if (type == address.get_value_type())
+        if (type == address.get_ip_value_type())
         {
             selected_addresses.push_back(address);
         }
@@ -165,10 +165,10 @@ void AddressManager::export_addresses_to_file(string file_name)
 void AddressManager::import_addresses_from_file(string file_name)
 {
     ifstream file(file_name);
-    string name, value;
-    while (file >> name >> value)
+    string name, ip_value;
+    while (file >> name >> ip_value)
     {
-        create_address(name, value);
+        create_address(name, ip_value);
     }
     file.close();
     messenger.output_import_file_success();

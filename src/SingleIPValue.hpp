@@ -2,10 +2,10 @@
 #ifndef SINGLEIPVALUE_HPP
 #define SINGLEIPVALUE_HPP
 
-#include "IPValue.hpp"
+#include "IP.hpp"
 #include <string>
 
-class SingleIPValue : public IPValue
+class SingleIPValue : public IP
 {
     public:
         SingleIPValue() = default;

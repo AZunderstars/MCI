@@ -18,7 +18,7 @@ class AddressManager
         std::vector<AddressGroup *> address_groups;
         Messenger messenger;
 
-        void create_address(std::string name, std::string value);
+        void create_address(std::string name, std::string ip_value);
         void print_addresses(std::vector<std::string> command_sections);
         void print_addresses_with_type(std::string type);
         void create_address_group(std::string name);
