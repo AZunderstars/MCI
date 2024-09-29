@@ -16,9 +16,9 @@ vector<string> parse_string_by_delimiter(string str, char delimiter)
     return result;
 }
 
-bool is_IP_section_number_valid(int IP_sectioon)
+bool is_ip_section_number_valid(int ip_sectioon)
 {
-    return IP_sectioon >= 0 and IP_sectioon <= 255;
+    return ip_sectioon >= 0 and ip_sectioon <= 255;
 }
 
 bool does_string_have_char(string str, char c)
@@ -32,10 +32,10 @@ bool is_single_ip_value_valid(string value)
     {
         return false;
     }
-    vector<string> IP_sections = parse_string_by_delimiter(value, '.');
-    for (string IP_section : IP_sections)
+    vector<string> ip_sectioons = parse_string_by_delimiter(value, '.');
+    for (string ip_sectioon : ip_sectioons)
     {
-        if (!is_IP_section_number_valid(stoi(IP_section)))
+        if (!is_ip_section_number_valid(stoi(ip_sectioon)))
         {
             return false;
         }
@@ -61,7 +61,7 @@ bool is_subnet_ip_value_valid(string value)
     return is_single_ip_value_valid(subnet) and is_mask_valid(stoi(mask));
 }
 
-bool is_IP_range_valid(string range_start, string range_end)
+bool is_ip_range_valid(string range_start, string range_end)
 {
     vector<string> range_start_sections = parse_string_by_delimiter(range_start, '.');
     vector<string> range_end_sections = parse_string_by_delimiter(range_end, '.');
@@ -85,5 +85,5 @@ bool is_range_ip_value_valid(string value)
     vector<string> parsed_value_by_dash = parse_string_by_delimiter(value, '-');
     range_start = parsed_value_by_dash[0];
     range_end = parsed_value_by_dash[1];
-    return is_single_ip_value_valid(range_start) and is_single_ip_value_valid(range_end) and is_IP_range_valid(range_start, range_end);
+    return is_single_ip_value_valid(range_start) and is_single_ip_value_valid(range_end) and is_ip_range_valid(range_start, range_end);
 }
